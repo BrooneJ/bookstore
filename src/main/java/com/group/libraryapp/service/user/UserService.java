@@ -1,9 +1,9 @@
-package com.group.libraryapp.service;
+package com.group.libraryapp.service.user;
 
 import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
-import com.group.libraryapp.repository.UserRepository;
+import com.group.libraryapp.repository.user.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
