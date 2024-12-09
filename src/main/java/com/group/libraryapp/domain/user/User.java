@@ -51,7 +51,7 @@ public class User {
   }
 
   public void loanBook(String bookName) {
-    this.userLoanHistories.add(new UserLoanHistory(this, bookName));
+    this.userLoanHistories.add(new UserLoanHistory(this, bookName, false));
   }
 
   public void returnBook(String bookName) {

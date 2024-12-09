@@ -2,9 +2,13 @@ package com.group.libraryapp.dto.book.request;
 
 public class BookCreateRequest {
 
-    private String name;
+  private final String name;
 
-    public String getName() {
-        return name;
-    }
+  public BookCreateRequest(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
 }
