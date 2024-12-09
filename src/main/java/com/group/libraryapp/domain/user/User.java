@@ -1,6 +1,8 @@
 package com.group.libraryapp.domain.user;
 
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,17 +11,14 @@ import java.util.List;
 @Entity
 public class User {
 
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private final List<UserLoanHistory> userLoanHistories = new ArrayList<>();
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id = null;
-
   @Column(nullable = false, length = 20)
   private String name;
-
   private Integer age;
-
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<UserLoanHistory> userLoanHistories = new ArrayList<>();
 
   protected User() {
   }
@@ -33,10 +32,12 @@ public class User {
     this.age = age;
   }
 
+  @NotNull
   public String getName() {
     return name;
   }
 
+  @Nullable
   public Integer getAge() {
     return age;
   }
