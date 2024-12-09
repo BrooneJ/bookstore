@@ -1,7 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.6'
-	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.7.6'
+    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
 }
 
 group = 'com.example'
@@ -9,18 +10,32 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'com.h2database:h2'
-	runtimeOnly 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = '11'
+    }
 }
