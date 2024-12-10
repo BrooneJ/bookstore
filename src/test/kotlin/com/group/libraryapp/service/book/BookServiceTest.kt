@@ -78,7 +78,7 @@ class BookServiceTest @Autowired constructor(
     val message = assertThrows<IllegalArgumentException> {
       bookService.loanBook(request)
     }.message
-    assertThat(message).isEqualTo("Book is not available")
+    assertThat(message).isEqualTo("This book is loaned.")
   }
 
   @Test
