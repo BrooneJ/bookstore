@@ -45,7 +45,7 @@ public class BookService {
     User user = userRepository.findByName(request.getUserName())
         .orElseThrow(IllegalArgumentException::new);
 
-    user.loanBook(book.getName());
+    user.loanBook(book);
   }
 
   @Transactional

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import java.util.*
 
 @SpringBootTest
 class JavaBookServiceTest @Autowired constructor(
@@ -51,7 +52,7 @@ class JavaBookServiceTest @Autowired constructor(
   fun loanBookTest() {
     // given
     bookRepository.save(Book("Harry potter"))
-    val savedUser = userRepository.save(User("snoopy", null))
+    val savedUser = userRepository.save(User("snoopy", null, Collections.emptyList(), null))
     val request = BookLoanRequest("snoopy", "Harry potter")
 
     // when

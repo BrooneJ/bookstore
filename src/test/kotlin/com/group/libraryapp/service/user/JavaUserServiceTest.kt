@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class UserServiceTest @Autowired constructor(
+class JavaUserServiceTest @Autowired constructor(
   private val userRepository: UserRepository,
   private val userService: UserServiceV2
 ) {
@@ -59,7 +59,7 @@ class UserServiceTest @Autowired constructor(
   fun updateUserNameTest() {
     // given
     val saveUser = userRepository.save(User("snoopy", null))
-    val request = UserUpdateRequest(saveUser.id, "woodstock")
+    val request = UserUpdateRequest(saveUser.id!!, "woodstock")
 
     // when
     userService.updateUser(request)
