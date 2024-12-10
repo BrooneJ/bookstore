@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest
 class JavaUserServiceTest @Autowired constructor(
   private val userRepository: UserRepository,
-  private val userService: UserServiceV2
+  private val userService: UserService
 ) {
 
   @AfterEach
@@ -47,7 +47,7 @@ class JavaUserServiceTest @Autowired constructor(
     )
 
     // when
-    val result = userService.users
+    val result = userService.getUsers()
 
     // then
     assertThat(result).hasSize(2)
