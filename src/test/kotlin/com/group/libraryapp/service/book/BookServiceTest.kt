@@ -19,7 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import java.util.*
 
 @SpringBootTest
-class JavaBookServiceTest @Autowired constructor(
+class BookServiceTest @Autowired constructor(
   private val bookRepository: BookRepository,
   private val bookService: BookService,
   private val userRepository: UserRepository,

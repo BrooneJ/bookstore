@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class JavaUserServiceTest @Autowired constructor(
+class UserServiceTest @Autowired constructor(
   private val userRepository: UserRepository,
   private val userService: UserService
 ) {
