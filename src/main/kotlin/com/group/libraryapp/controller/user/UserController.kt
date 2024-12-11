@@ -16,17 +16,17 @@ class UserController(
     userService.saveUser(request)
   }
 
-  @GetMapping
+  @GetMapping("/user")
   fun getUsers(): List<UserResponse> {
     return userService.getUsers()
   }
 
-  @PutMapping
+  @PutMapping("/user")
   fun updateUser(@RequestBody request: UserUpdateRequest) {
     userService.updateUser(request)
   }
 
-  @DeleteMapping
+  @DeleteMapping("/user")
   fun deleteUser(@RequestParam name: String) {
     userService.deleteUser(name)
   }
