@@ -36,7 +36,7 @@ class BookServiceTest @Autowired constructor(
   @DisplayName("saveBookTest")
   fun saveBookTest() {
     // given
-    val request = BookCreateRequest("Harry potter")
+    val request = BookCreateRequest("Harry potter", "COMPUTER")
 
     // when
     bookService.saveBook(request)
@@ -45,13 +45,14 @@ class BookServiceTest @Autowired constructor(
     val result = bookRepository.findAll()
     assertThat(result).hasSize(1)
     assertThat(result[0].name).isEqualTo("Harry potter")
+    assertThat(result[0].type).isEqualTo("COMPUTER")
   }
 
   @Test
   @DisplayName("getBooksTest")
   fun loanBookTest() {
     // given
-    bookRepository.save(Book("Harry potter"))
+    bookRepository.save(Book.fixture("Harry potter"))
     val savedUser = userRepository.save(User("snoopy", null, Collections.emptyList(), null))
     val request = BookLoanRequest("snoopy", "Harry potter")
 
@@ -70,7 +71,7 @@ class BookServiceTest @Autowired constructor(
   @DisplayName("When loaned book is not returned, it should not be available")
   fun loanedBookNotAvailableTest() {
     // given
-    bookRepository.save(Book("Harry potter"))
+    bookRepository.save(Book.fixture("Harry potter"))
     val savedUser = userRepository.save(User("snoopy", null))
     userLoanHistoryRepository.save(UserLoanHistory(savedUser, "Harry potter", false))
     val request = BookLoanRequest("snoopy", "Harry potter")
