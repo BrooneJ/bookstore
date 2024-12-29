@@ -7,6 +7,7 @@ import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
+import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
 import com.group.libraryapp.dto.book.request.BookCreateRequest
 import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookReturnRequest
@@ -65,7 +66,7 @@ class BookServiceTest @Autowired constructor(
     assertThat(result).hasSize(1)
     assertThat(result[0].bookName).isEqualTo("Harry potter")
     assertThat(result[0].user.id).isEqualTo(savedUser.id)
-    assertThat(result[0].isReturn).isFalse()
+    assertThat(result[0].status).isEqualTo(UserLoanStatus.RETURNED)
   }
 
   @Test
@@ -74,7 +75,7 @@ class BookServiceTest @Autowired constructor(
     // given
     bookRepository.save(Book.fixture("Harry potter"))
     val savedUser = userRepository.save(User("snoopy", null))
-    userLoanHistoryRepository.save(UserLoanHistory(savedUser, "Harry potter", false))
+    userLoanHistoryRepository.save(UserLoanHistory.fixture(savedUser, "Harry potter"))
     val request = BookLoanRequest("snoopy", "Harry potter")
 
     // when & then
@@ -89,7 +90,7 @@ class BookServiceTest @Autowired constructor(
   fun returnBookTest() {
     // given
     val savedUser = userRepository.save(User("snoopy", null))
-    userLoanHistoryRepository.save(UserLoanHistory(savedUser, "Harry potter", false))
+    userLoanHistoryRepository.save(UserLoanHistory.fixture(savedUser, "Harry potter"))
     val request = BookReturnRequest("snoopy", "Harry potter")
 
     // when
@@ -98,6 +99,6 @@ class BookServiceTest @Autowired constructor(
     // then
     val result = userLoanHistoryRepository.findAll()
     assertThat(result).hasSize(1)
-    assertThat(result[0].isReturn).isTrue()
+    assertThat(result[0].status).isEqualTo(UserLoanStatus.RETURNED)
   }
 }
